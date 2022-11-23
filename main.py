@@ -79,7 +79,7 @@ class PyfishMainWindow(QWidget):
         self.thresh_input.textEdited.connect(self.events.filter_threshold)
 
     def update_previews(self):
-        untouched_prev = self.masker.raw_img_from_cursor()
+        untouched_prev = self.masker.raw_img_from_cursor(True)
         stripped_prev = self.masker.strip_color(untouched_prev)
         
         # can't convert in masker class because of how color stripping works
@@ -90,7 +90,7 @@ class PyfishMainWindow(QWidget):
         self.img_right.setPixmap(QPixmap(QPixmap.fromImage(stripped_prev)))
     
 #----------------------------------------------------------------#
-# INITIATE GUI (CLIENT)
+# INITIATE GUI
 #----------------------------------------------------------------#
 
 if __name__ == '__main__':

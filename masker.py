@@ -28,13 +28,15 @@ class PyMasker():
     def find_movement(self):
          a = "b" #placeholder
 
-    def raw_img_from_cursor(self):
+    def raw_img_from_cursor(self, centered):
         x, y = pag.position()
-        inc = self.capture_area
-        image = ImageGrab.grab(bbox=(x-inc, y-inc, x+inc, y+inc))
-        return image
-
-    def offset_img_from_cursor(self):
-        x, y = pag.position()
-        image = ImageGrab.grab(bbox=(x, y, x+150, y+150))
+        image = None
+        
+        if centered:
+            inc = self.capture_area
+            image = ImageGrab.grab(bbox=(x-inc, y-inc, x+inc, y+inc))
+        else:
+            inc = self.full_capture_area
+            image = ImageGrab.grab(bbox=(x, y, x+inc, y+inc))
+        
         return image
